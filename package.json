@@ -1,21 +1,17 @@
 {
-  "name": "kazi-mashinani-backend",
+  "name": "kazi-mashinani",
   "version": "1.0.0",
-  "description": "Backend for Kazi Mashinani - Rural Job Platform",
-  "main": "index.js",
+  "description": "Rural Job Platform",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "vercel dev",
+    "build": "echo 'No build step needed for static site'"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "mongoose": "^7.0.0",
-    "cors": "^2.8.5",
+    "mongodb": "^5.0.0",
     "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^9.0.0",
-    "dotenv": "^16.0.3"
+    "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "vercel": "^28.0.0"
   }
 }
