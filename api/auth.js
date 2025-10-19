@@ -45,135 +45,144 @@ module.exports = async (req, res) => {
     try {
         const db = await connectToDatabase();
 
-        if (req.method === 'POST' && req.url === '/api/auth/register') {
-            // Handle registration
-            const { name, phone, email, password, role, location } = req.body;
+        if (req.method === 'POST') {
+            const path = req.url;
 
-            if (!name || !phone || !password || !role || !location) {
-                return res.status(400).json({
-                    success: false,
-                    message: 'All fields are required: name, phone, password, role, location'
-                });
-            }
+            if (path === '/api/auth/register') {
+                // Handle registration
+                const { name, phone, email, password, role, location } = req.body;
 
-            const formattedPhone = formatPhoneNumber(phone);
-
-            // Check if user exists
-            const existingUser = await db.collection('users').findOne({
-                $or: [
-                    { phone: formattedPhone },
-                    { email: email?.toLowerCase() }
-                ]
-            });
-
-            if (existingUser) {
-                return res.status(400).json({
-                    success: false,
-                    message: 'User already exists with this phone number or email'
-                });
-            }
-
-            // Hash password
-            const hashedPassword = await bcrypt.hash(password, 12);
-
-            // Create user
-            const user = {
-                name: name.trim(),
-                phone: formattedPhone,
-                email: email?.toLowerCase()?.trim(),
-                password: hashedPassword,
-                role,
-                location: location.trim(),
-                isVerified: false,
-                createdAt: new Date(),
-                updatedAt: new Date(),
-                lastLogin: new Date()
-            };
-
-            const result = await db.collection('users').insertOne(user);
-            const userId = result.insertedId;
-
-            // Generate token
-            const token = jwt.sign(
-                { userId: userId.toString() },
-                JWT_SECRET,
-                { expiresIn: '30d' }
-            );
-
-            // Remove password from response
-            delete user.password;
-
-            res.status(201).json({
-                success: true,
-                message: 'User registered successfully!',
-                token,
-                user: {
-                    id: userId,
-                    ...user
+                if (!name || !phone || !password || !role || !location) {
+                    return res.status(400).json({
+                        success: false,
+                        message: 'All fields are required: name, phone, password, role, location'
+                    });
                 }
-            });
 
-        } else if (req.method === 'POST' && req.url === '/api/auth/login') {
-            // Handle login
-            const { phone, password } = req.body;
+                const formattedPhone = formatPhoneNumber(phone);
 
-            if (!phone || !password) {
-                return res.status(400).json({
-                    success: false,
-                    message: 'Phone number and password are required'
+                // Check if user exists
+                const existingUser = await db.collection('users').findOne({
+                    $or: [
+                        { phone: formattedPhone },
+                        { email: email?.toLowerCase() }
+                    ]
                 });
-            }
 
-            const formattedPhone = formatPhoneNumber(phone);
-
-            // Find user
-            const user = await db.collection('users').findOne({ phone: formattedPhone });
-            if (!user) {
-                return res.status(400).json({
-                    success: false,
-                    message: 'Invalid phone number or password'
-                });
-            }
-
-            // Check password
-            const isPasswordValid = await bcrypt.compare(password, user.password);
-            if (!isPasswordValid) {
-                return res.status(400).json({
-                    success: false,
-                    message: 'Invalid phone number or password'
-                });
-            }
-
-            // Update last login
-            await db.collection('users').updateOne(
-                { _id: user._id },
-                { $set: { lastLogin: new Date() } }
-            );
-
-            // Generate token
-            const token = jwt.sign(
-                { userId: user._id.toString() },
-                JWT_SECRET,
-                { expiresIn: '30d' }
-            );
-
-            // Remove password from response
-            delete user.password;
-
-            res.json({
-                success: true,
-                message: 'Login successful!',
-                token,
-                user: {
-                    id: user._id,
-                    ...user
+                if (existingUser) {
+                    return res.status(400).json({
+                        success: false,
+                        message: 'User already exists with this phone number or email'
+                    });
                 }
-            });
 
+                // Hash password
+                const hashedPassword = await bcrypt.hash(password, 12);
+
+                // Create user
+                const user = {
+                    name: name.trim(),
+                    phone: formattedPhone,
+                    email: email?.toLowerCase()?.trim(),
+                    password: hashedPassword,
+                    role,
+                    location: location.trim(),
+                    isVerified: false,
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                    lastLogin: new Date()
+                };
+
+                const result = await db.collection('users').insertOne(user);
+                const userId = result.insertedId;
+
+                // Generate token
+                const token = jwt.sign(
+                    { userId: userId.toString() },
+                    JWT_SECRET,
+                    { expiresIn: '30d' }
+                );
+
+                // Remove password from response
+                delete user.password;
+
+                res.status(201).json({
+                    success: true,
+                    message: 'User registered successfully!',
+                    token,
+                    user: {
+                        id: userId,
+                        ...user
+                    }
+                });
+
+            } else if (path === '/api/auth/login') {
+                // Handle login
+                const { phone, password } = req.body;
+
+                if (!phone || !password) {
+                    return res.status(400).json({
+                        success: false,
+                        message: 'Phone number and password are required'
+                    });
+                }
+
+                const formattedPhone = formatPhoneNumber(phone);
+
+                // Find user
+                const user = await db.collection('users').findOne({ phone: formattedPhone });
+                if (!user) {
+                    return res.status(400).json({
+                        success: false,
+                        message: 'Invalid phone number or password'
+                    });
+                }
+
+                // Check password
+                const isPasswordValid = await bcrypt.compare(password, user.password);
+                if (!isPasswordValid) {
+                    return res.status(400).json({
+                        success: false,
+                        message: 'Invalid phone number or password'
+                    });
+                }
+
+                // Update last login
+                await db.collection('users').updateOne(
+                    { _id: user._id },
+                    { $set: { lastLogin: new Date() } }
+                );
+
+                // Generate token
+                const token = jwt.sign(
+                    { userId: user._id.toString() },
+                    JWT_SECRET,
+                    { expiresIn: '30d' }
+                );
+
+                // Remove password from response
+                delete user.password;
+
+                res.json({
+                    success: true,
+                    message: 'Login successful!',
+                    token,
+                    user: {
+                        id: user._id,
+                        ...user
+                    }
+                });
+
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: 'Endpoint not found'
+                });
+            }
         } else {
-            res.status(404).json({
+            res.status(405).json({
                 success: false,
-                message: 'Endpoint not found'
+                message: 'Method not allowed'
             });
         }
 
