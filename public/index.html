@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +6,8 @@
     <title>Kazi Mashinani - Rural Job Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ALL YOUR EXISTING CSS STYLES GO HERE */
+        <style>
         :root {
             --primary-color: #1e3a8a;
             --secondary-color: #3b82f6;
@@ -1154,23 +1155,63 @@
             }
         }
     </style>
+        /* Copy the entire <style> section from your original HTML */
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #60a5fa;
+            --light-blue: #dbeafe;
+            --text-color: #1f2937;
+            --light-bg: #f0f9ff;
+            --white: #ffffff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 14px;
+            min-height: 100vh;
+        }
+
+        /* Add all your existing CSS styles here */
+        /* ... (copy all your CSS from the original file) ... */
+        
+    </style>
 </head>
 <body>
- 
-<header>
-    <div class="header-content">
-        <div class="logo">
-            <i class="fas fa-hands-helping"></i>
-            <div>
-                <h1>Kazi Mashinani</h1>
-                <p>Connecting Rural Workers with Local Opportunities</p>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-hands-helping"></i>
+                <div>
+                    <h1>Kazi Mashinani</h1>
+                    <p>Connecting Rural Workers with Local Opportunities</p>
+                </div>
+            </div>
+            <div id="auth-section">
+                <!-- Auth buttons will be populated by JavaScript -->
             </div>
         </div>
-        <div id="auth-section">
-            <!-- This will be populated by JavaScript -->
-        </div>
-    </div>
-</header>
+    </header>
+
     <!-- Top Navigation -->
     <div class="top-nav">
         <div class="nav-container">
@@ -1219,7 +1260,7 @@
                         </div>
                         <div class="blog-content">
                             <h3>Agriculture Opportunities Growing in Rural Areas</h3>
-                            <p>Discover the latest farming and agricultural job opportunities across rural Kenya. From seasonal farm work to permanent positions.</p>
+                            <p>Discover the latest farming and agricultural job opportunities across rural Kenya.</p>
                             <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -1230,7 +1271,7 @@
                         </div>
                         <div class="blog-content">
                             <h3>Construction Boom Creates New Jobs</h3>
-                            <p>With infrastructure development accelerating, construction jobs are plentiful in rural towns and emerging urban centers.</p>
+                            <p>With infrastructure development accelerating, construction jobs are plentiful.</p>
                             <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -1241,7 +1282,7 @@
                         </div>
                         <div class="blog-content">
                             <h3>Domestic Work Opportunities</h3>
-                            <p>Reliable domestic helpers are in high demand. Learn about the requirements and benefits of domestic work positions.</p>
+                            <p>Reliable domestic helpers are in high demand across urban and rural areas.</p>
                             <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -1259,7 +1300,7 @@
                             <i class="fas fa-search"></i>
                         </div>
                         <h3>Search Jobs</h3>
-                        <p>Browse through available job opportunities in your area. Filter by category, location, and more.</p>
+                        <p>Browse through available job opportunities in your area.</p>
                         <button class="btn-primary">Find Jobs</button>
                     </div>
                     
@@ -1268,7 +1309,7 @@
                             <i class="fas fa-plus-circle"></i>
                         </div>
                         <h3>Post a Job</h3>
-                        <p>Have a job opening? Post it here to reach qualified candidates in your community.</p>
+                        <p>Have a job opening? Post it here to reach qualified candidates.</p>
                         <button class="btn-primary">Post Job</button>
                     </div>
                 </div>
@@ -1333,7 +1374,6 @@
                         <div class="form-group">
                             <label>Phone Number *</label>
                             <input type="tel" id="employer-phone" placeholder="e.g., 712345678" required oninput="formatPhoneNumber(this)">
-                            <small style="color: #666; font-size: 0.75rem;">Enter any format, we'll correct it automatically</small>
                         </div>
                         <div class="form-group">
                             <label>WhatsApp (Optional)</label>
@@ -1393,8 +1433,8 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="profile-info">
-                        <h2>Profile</h2>
-                        <p>Manage your jobs and view your activity</p>
+                        <h2 id="profile-name">Profile</h2>
+                        <p id="profile-role">Manage your jobs and view your activity</p>
                     </div>
                 </div>
 
@@ -1425,6 +1465,19 @@
                 </div>
             </div>
         </section>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="authModalTitle">Sign In</h3>
+                <button class="close-modal" onclick="closeAuthModal()">&times;</button>
+            </div>
+            <form id="authForm">
+                <!-- Form content will be populated by JavaScript -->
+            </form>
+        </div>
     </div>
 
     <!-- Edit Job Modal -->
@@ -1491,295 +1544,30 @@
             <h3>Kazi Mashinani</h3>
             <p>Connecting Rural Workers with Local Opportunities</p>
             <div style="margin-top: 1rem;">
-                &copy; 2025 Kazi Mashinani. All rights reserved.
+                &copy; 2024 Kazi Mashinani. All rights reserved.
             </div>
         </div>
     </footer>
 
     <script>
-        // ========== AUTHENTICATION MANAGEMENT ==========
-        function updateAuthUI() {
-            const authSection = document.getElementById('auth-section');
-            const user = JSON.parse(localStorage.getItem('user') || 'null');
-            const token = localStorage.getItem('token');
+        // ========== CONFIGURATION ==========
+        const API_BASE_URL = window.location.hostname === 'localhost' 
+            ? 'http://localhost:3000/api'
+            : '/api'; // For Vercel deployment
 
-            if (user && token) {
-                // User is logged in - redirect to appropriate dashboard
-                if (user.role === 'employer') {
-                    window.location.href = 'employer.html';
-                } else if (user.role === 'employee') {
-                    window.location.href = 'employee.html';
-                } else {
-                    // User is logged in but no role assigned (shouldn't happen)
-                    authSection.innerHTML = `
-                        <div class="user-menu" style="display: flex; align-items: center; gap: 1rem;">
-                            <div class="user-info" style="text-align: right;">
-                                <div style="font-weight: 600;">${user.name}</div>
-                                <div style="font-size: 0.8rem; opacity: 0.8;">User</div>
-                            </div>
-                            <button onclick="signOut()" class="btn-secondary" style="padding: 8px 16px;">
-                                <i class="fas fa-sign-out-alt"></i> Sign Out
-                            </button>
-                        </div>
-                    `;
-                }
-            } else {
-                // User is not logged in
-                authSection.innerHTML = `
-                    <div class="auth-buttons" style="display: flex; gap: 0.5rem;">
-                        <a href="signin.html" class="btn-secondary" style="padding: 8px 16px;">
-                            <i class="fas fa-sign-in-alt"></i> Sign In
-                        </a>
-                        <a href="signup.html" class="btn-primary" style="padding: 8px 16px;">
-                            <i class="fas fa-user-plus"></i> Sign Up
-                        </a>
-                    </div>
-                `;
-            }
-        }
-
-        function signOut() {
-            localStorage.removeItem('user');
-            localStorage.removeItem('token');
-            updateAuthUI();
-            showToast('Signed out successfully', 'success');
-            
-            // Reload jobs to reflect logged out state
-            loadJobs();
-            loadMyJobs();
-        }
-
-        // Update job posting to require authentication
-        async function handleJobSubmit(e) {
-            e.preventDefault();
-            
-            const user = JSON.parse(localStorage.getItem('user') || 'null');
-            if (!user) {
-                showMessage('Please sign in to post a job', 'error', 'post');
-                showToast('Please sign in to post a job', 'warning');
-                return;
-            }
-
-            // Continue with your existing job posting logic...
-            if (!validateForm()) return;
-
-            const jobData = collectFormData();
-            jobData.employerId = user._id || user.phone; // Use phone as fallback ID
-            
-            // Rest of your existing job submission code...
-            // ... (your existing job posting code)
-        }
-
-        // Update profile section
-        function loadMyJobs() {
-            const user = JSON.parse(localStorage.getItem('user') || 'null');
-            
-            if (!user) {
-                const myJobsList = document.getElementById('my-jobs-list');
-                if (myJobsList) {
-                    myJobsList.innerHTML = `
-                        <div class="message info">
-                            <p>Please <a href="signin.html" style="color: var(--primary-color);">sign in</a> to view your posted jobs.</p>
-                        </div>
-                    `;
-                }
-                return;
-            }
-
-            // Your existing loadMyJobs logic for logged-in users
-            const myJobs = currentJobs.filter(job => job.employerId === (user._id || user.phone));
-            // ... rest of your function
-        }
-
-        // Initialize auth when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            updateAuthUI();
-            
-            // Protect job posting navigation
-            const postJobNav = document.querySelector('.nav-item[onclick="showSection(\'post\')"]');
-            if (postJobNav) {
-                postJobNav.addEventListener('click', function(e) {
-                    const user = JSON.parse(localStorage.getItem('user') || 'null');
-                    if (!user) {
-                        e.preventDefault();
-                        showToast('Please sign in to post a job', 'warning');
-                        showSection('home');
-                        return false;
-                    }
-                });
-            }
-        });
-        
-        // ========== BLOG CONTENT ==========
-        const blogContent = {
-            'agriculture': {
-                title: 'Agriculture Opportunities Growing in Rural Areas',
-                icon: 'fas fa-tractor',
-                content: `
-                    <h3>The Growing Demand for Agricultural Workers</h3>
-                    <p>Rural Kenya is experiencing a significant increase in agricultural job opportunities as the sector continues to expand. From small-scale family farms to large commercial agricultural enterprises, there's a growing need for skilled and unskilled labor across various agricultural subsectors.</p>
-                    
-                    <h3>Types of Agricultural Jobs Available</h3>
-                    <ul>
-                        <li><strong>Seasonal Farm Workers:</strong> Needed during planting and harvesting seasons for crops like maize, wheat, and vegetables</li>
-                        <li><strong>Livestock Keepers:</strong> Responsible for cattle, goats, sheep, and poultry management</li>
-                        <li><strong>Farm Managers:</strong> Oversee daily farm operations and worker supervision</li>
-                        <li><strong>Irrigation Specialists:</strong> Manage water resources and irrigation systems</li>
-                        <li><strong>Crop Protection Officers:</strong> Implement pest and disease control measures</li>
-                    </ul>
-                    
-                    <h3>Emerging Opportunities</h3>
-                    <p>The agricultural sector is evolving with new opportunities in:</p>
-                    <ul>
-                        <li><strong>Agri-tech:</strong> Digital farming solutions and mobile-based agricultural services</li>
-                        <li><strong>Organic Farming:</strong> Growing demand for organic produce in local and international markets</li>
-                        <li><strong>Value Addition:</strong> Food processing and packaging opportunities</li>
-                        <li><strong>Greenhouse Farming:</strong> Year-round production of high-value crops</li>
-                    </ul>
-                    
-                    <h3>Skills in Demand</h3>
-                    <p>Employers are looking for workers with:</p>
-                    <ul>
-                        <li>Basic farming knowledge and experience</li>
-                        <li>Understanding of modern agricultural techniques</li>
-                        <li>Physical stamina for outdoor work</li>
-                        <li>Reliability and commitment</li>
-                        <li>Ability to work in teams</li>
-                    </ul>
-                    
-                    <p>With the government's focus on food security and agricultural modernization, the rural job market in agriculture is expected to continue growing, providing stable employment opportunities for thousands of Kenyans.</p>
-                `
-            },
-            'construction': {
-                title: 'Construction Boom Creates New Jobs',
-                icon: 'fas fa-tools',
-                content: `
-                    <h3>Construction Industry Expansion</h3>
-                    <p>Kenya's construction sector is experiencing unprecedented growth, driven by government infrastructure projects, private development, and urbanization. This boom is creating thousands of new job opportunities in rural and peri-urban areas.</p>
-                    
-                    <h3>Available Construction Positions</h3>
-                    <ul>
-                        <li><strong>General Laborers:</strong> Foundation work, material handling, and site preparation</li>
-                        <li><strong>Masons and Bricklayers:</strong> Wall construction and finishing work</li>
-                        <li><strong>Carpenters:</strong> Formwork, roofing, and interior finishing</li>
-                        <li><strong>Plumbers and Electricians:</strong> Installation of utilities and systems</li>
-                        <li><strong>Machine Operators:</strong> Operating construction equipment and machinery</li>
-                        <li><strong>Site Supervisors:</strong> Overseeing work crews and project progress</li>
-                    </ul>
-                    
-                    <h3>Major Projects Driving Employment</h3>
-                    <p>Several large-scale projects are creating construction jobs:</p>
-                    <ul>
-                        <li><strong>Affordable Housing Program:</strong> Government initiative to build 500,000 homes</li>
-                        <li><strong>Road Construction:</strong> Ongoing road networks expansion across counties</li>
-                        <li><strong>Rural Electrification:</strong> Bringing electricity to remote areas</li>
-                        <li><strong>Water Projects:</strong> Dam construction and water supply systems</li>
-                        <li><strong>Commercial Buildings:</strong> Shopping centers, offices, and industrial parks</li>
-                    </ul>
-                    
-                    <h3>Training and Certification</h3>
-                    <p>Many organizations offer construction skills training:</p>
-                    <ul>
-                        <li>National Industrial Training Authority (NITA) programs</li>
-                        <li>Youth Fund construction skills development</li>
-                        <li>Private technical training institutes</li>
-                        <li>On-the-job apprenticeship opportunities</li>
-                    </ul>
-                    
-                    <h3>Future Outlook</h3>
-                    <p>The construction sector is projected to grow at 6-8% annually, ensuring continued job creation. Workers with specialized skills in green building, modern construction techniques, and safety protocols are particularly in high demand.</p>
-                    
-                    <p>With proper training and certification, construction workers can earn competitive wages and build sustainable careers in this dynamic industry.</p>
-                `
-            },
-            'domestic': {
-                title: 'Domestic Work Opportunities',
-                icon: 'fas fa-home',
-                content: `
-                    <h3>The Domestic Work Sector in Kenya</h3>
-                    <p>Domestic work remains one of the largest employment sectors in Kenya, providing livelihoods for hundreds of thousands of workers, particularly women from rural areas. The sector is undergoing significant transformation with improved regulations and working conditions.</p>
-                    
-                    <h3>Types of Domestic Work Available</h3>
-                    <ul>
-                        <li><strong>House Help/Cleaners:</strong> General household cleaning and maintenance</li>
-                        <li><strong>Nannies and Childcare Providers:</strong> Taking care of children and supporting families</li>
-                        <li><strong>Cook/Chefs:</strong> Meal preparation and kitchen management</li>
-                        <li><strong>Elderly Caregivers:</strong> Assisting senior citizens with daily activities</li>
-                        <li><strong>Gardeners and Groundskeepers:</strong> Maintaining outdoor spaces</li>
-                        <li><strong>Drivers and Chauffeurs:</strong> Family transportation needs</li>
-                    </ul>
-                    
-                    <h3>Rights and Regulations</h3>
-                    <p>The Domestic Workers Act provides important protections:</p>
-                    <ul>
-                        <li>Minimum wage requirements</li>
-                        <li>Maximum working hours (45 hours per week)</li>
-                        <li>Paid leave and off days</li>
-                        <li>Written employment contracts</li>
-                        <li>Access to social security (NSSF)</li>
-                        <li>Safe working conditions</li>
-                    </ul>
-                    
-                    <h3>Skills and Qualifications</h3>
-                    <p>Successful domestic workers typically possess:</p>
-                    <ul>
-                        <li>Basic literacy and numeracy skills</li>
-                        <li>Understanding of household management</li>
-                        <li>Childcare or elderly care knowledge</li>
-                        <li>Cooking and nutrition basics</li>
-                        <li>Reliability and trustworthiness</li>
-                        <li>Good communication skills</li>
-                    </ul>
-                    
-                    <h3>Training Opportunities</h3>
-                    <p>Several organizations offer domestic worker training:</p>
-                    <ul>
-                        <li>Government vocational training centers</li>
-                        <li>Private domestic worker training schools</li>
-                        <li>Online courses in household management</li>
-                        <li>First aid and safety training programs</li>
-                    </ul>
-                    
-                    <h3>Career Advancement</h3>
-                    <p>Domestic workers can advance their careers through:</p>
-                    <ul>
-                        <li>Specializing in specific areas (childcare, cooking)</li>
-                        <li>Pursuing additional certifications</li>
-                        <li>Moving into supervisory roles</li>
-                        <li>Starting their own cleaning or caregiving services</li>
-                    </ul>
-                    
-                    <p>The domestic work sector offers stable employment with opportunities for skill development and career growth, making it an important source of livelihood for many Kenyan families.</p>
-                `
-            }
-        };
-
-        // ========== SIMPLIFIED JAVASCRIPT ==========
-        const API_BASE_URL = '/api/jobs';
-
-        // Global variables
+        let currentUser = null;
+        let authToken = null;
         let currentJobs = [];
         let currentPage = 1;
         const jobsPerPage = 5;
         let currentSort = 'newest';
 
-        // User profile data
-        const userProfile = {
-            id: 'user_12345',
-            name: 'Profile',
-            joinDate: '2024-01-15',
-            jobsPosted: [],
-            totalApplicants: 0
-        };
-
-        // Real-time updates simulation
-        let realTimeInterval;
-
-        async function initializeApp() {
+        // ========== INITIALIZATION ==========
+        function initializeApp() {
+            initAuth();
             setupEventListeners();
-            await loadJobs();
-            loadMyJobs();
-            startRealTimeUpdates();
+            loadJobs();
+            updateAuthUI();
         }
 
         function setupEventListeners() {
@@ -1792,7 +1580,335 @@
             }
         }
 
-        // Phone Number Formatting
+        // ========== AUTHENTICATION ==========
+        function initAuth() {
+            authToken = localStorage.getItem('authToken');
+            currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+        }
+
+        function updateAuthUI() {
+            const authSection = document.getElementById('auth-section');
+            if (!authSection) return;
+
+            if (currentUser && authToken) {
+                authSection.innerHTML = `
+                    <div class="user-menu" style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="user-info" style="text-align: right;">
+                            <div style="font-weight: 600;">${currentUser.name}</div>
+                            <div style="font-size: 0.8rem; opacity: 0.8;">${currentUser.role}</div>
+                        </div>
+                        <button onclick="signOut()" class="btn-secondary" style="padding: 8px 16px;">
+                            <i class="fas fa-sign-out-alt"></i> Sign Out
+                        </button>
+                    </div>
+                `;
+                
+                // Update profile section
+                const profileName = document.getElementById('profile-name');
+                const profileRole = document.getElementById('profile-role');
+                if (profileName) profileName.textContent = currentUser.name;
+                if (profileRole) profileRole.textContent = `${currentUser.role.charAt(0).toUpperCase() + currentUser.role.slice(1)} - ${currentUser.location}`;
+                
+            } else {
+                authSection.innerHTML = `
+                    <div class="auth-buttons" style="display: flex; gap: 0.5rem;">
+                        <button onclick="showAuthModal('login')" class="btn-secondary" style="padding: 8px 16px;">
+                            <i class="fas fa-sign-in-alt"></i> Sign In
+                        </button>
+                        <button onclick="showAuthModal('register')" class="btn-primary" style="padding: 8px 16px;">
+                            <i class="fas fa-user-plus"></i> Sign Up
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        function showAuthModal(type) {
+            const modal = document.getElementById('authModal');
+            const title = type === 'login' ? 'Sign In' : 'Create Account';
+            
+            document.getElementById('authModalTitle').textContent = title;
+            document.getElementById('authForm').innerHTML = generateAuthForm(type);
+            modal.style.display = 'flex';
+        }
+
+        function generateAuthForm(type) {
+            if (type === 'login') {
+                return `
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" id="login-phone" placeholder="e.g., 712345678" required oninput="formatPhoneNumber(this)">
+                    </div>
+                    <div class="form-group">
+                        <label>Password *</label>
+                        <input type="password" id="login-password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> Sign In
+                        </button>
+                        <button type="button" class="btn-secondary" onclick="showAuthModal('register')">
+                            Create New Account
+                        </button>
+                    </div>
+                `;
+            } else {
+                return `
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="register-name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" id="register-phone" placeholder="e.g., 712345678" required oninput="formatPhoneNumber(this)">
+                    </div>
+                    <div class="form-group">
+                        <label>Password *</label>
+                        <input type="password" id="register-password" placeholder="Create a password (min. 6 characters)" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label>Email (Optional)</label>
+                        <input type="email" id="register-email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label>Location *</label>
+                        <input type="text" id="register-location" placeholder="Your town or area" required>
+                    </div>
+                    <div class="form-group">
+                        <label>I want to: *</label>
+                        <select id="register-role" required>
+                            <option value="">Select your role</option>
+                            <option value="employee">Find Jobs</option>
+                            <option value="employer">Post Jobs</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </button>
+                        <button type="button" class="btn-secondary" onclick="showAuthModal('login')">
+                            Already have an account?
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // Handle auth form submission
+        document.getElementById('authForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('authModalTitle').textContent;
+            
+            if (title === 'Sign In') {
+                const phone = document.getElementById('login-phone').value;
+                const password = document.getElementById('login-password').value;
+                handleLogin(phone, password);
+            } else {
+                const userData = {
+                    name: document.getElementById('register-name').value,
+                    phone: document.getElementById('register-phone').value,
+                    password: document.getElementById('register-password').value,
+                    email: document.getElementById('register-email').value,
+                    location: document.getElementById('register-location').value,
+                    role: document.getElementById('register-role').value
+                };
+                handleRegister(userData);
+            }
+        });
+
+        async function handleRegister(userData) {
+            try {
+                const submitBtn = document.querySelector('#authForm button[type="submit"]');
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+                submitBtn.disabled = true;
+
+                const response = await fetch(`${API_BASE_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Registration failed');
+                }
+
+                // Save token and user data
+                localStorage.setItem('authToken', data.token);
+                localStorage.setItem('currentUser', JSON.stringify(data.user));
+                currentUser = data.user;
+                authToken = data.token;
+
+                updateAuthUI();
+                closeAuthModal();
+                showToast('Account created successfully! Welcome to Kazi Mashinani!', 'success');
+                
+                // Reload data
+                loadJobs();
+                loadMyJobs();
+
+            } catch (error) {
+                console.error('Registration error:', error);
+                showToast(error.message, 'error');
+            } finally {
+                const submitBtn = document.querySelector('#authForm button[type="submit"]');
+                if (submitBtn) {
+                    submitBtn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+                    submitBtn.disabled = false;
+                }
+            }
+        }
+
+        async function handleLogin(phone, password) {
+            try {
+                const submitBtn = document.querySelector('#authForm button[type="submit"]');
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+                submitBtn.disabled = true;
+
+                const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ phone, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Login failed');
+                }
+
+                // Save token and user data
+                localStorage.setItem('authToken', data.token);
+                localStorage.setItem('currentUser', JSON.stringify(data.user));
+                currentUser = data.user;
+                authToken = data.token;
+
+                updateAuthUI();
+                closeAuthModal();
+                showToast(`Welcome back, ${data.user.name}!`, 'success');
+                
+                // Reload data
+                loadJobs();
+                loadMyJobs();
+
+            } catch (error) {
+                console.error('Login error:', error);
+                showToast(error.message, 'error');
+            } finally {
+                const submitBtn = document.querySelector('#authForm button[type="submit"]');
+                if (submitBtn) {
+                    submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+                    submitBtn.disabled = false;
+                }
+            }
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').style.display = 'none';
+        }
+
+        function signOut() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('currentUser');
+            currentUser = null;
+            authToken = null;
+            
+            updateAuthUI();
+            showToast('Signed out successfully', 'success');
+            
+            // Reload jobs to reflect logged out state
+            loadJobs();
+            loadMyJobs();
+        }
+
+        // ========== JOB MANAGEMENT ==========
+        async function loadJobs() {
+            try {
+                showMessage('Loading jobs...', 'info', 'jobs');
+                
+                const response = await fetch(`${API_BASE_URL}/jobs`);
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Failed to load jobs');
+                }
+
+                currentJobs = data.jobs || [];
+                applyCurrentSort();
+                displayJobs(currentJobs);
+                updatePagination();
+                showMessage('', 'success', 'jobs');
+                
+            } catch (error) {
+                console.error('Error loading jobs:', error);
+                showMessage('Failed to load jobs from server', 'error', 'jobs');
+                // Fallback to sample data
+                loadSampleData();
+            }
+        }
+
+        async function handleJobSubmit(e) {
+            e.preventDefault();
+            
+            if (!currentUser) {
+                showMessage('Please sign in to post a job', 'error', 'post');
+                showToast('Please sign in to post a job', 'warning');
+                return;
+            }
+
+            if (!validateForm()) return;
+
+            const jobData = collectFormData();
+            const submitButton = document.querySelector('#job-form button[type="submit"]');
+            
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Posting...';
+            submitButton.disabled = true;
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/jobs`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(jobData)
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Failed to post job');
+                }
+
+                // Add to current jobs and update UI
+                currentJobs.unshift(data.job);
+                displayJobs(currentJobs);
+                
+                showMessage('Job posted successfully!', 'success', 'post');
+                document.getElementById('job-form').reset();
+                showToast('Job posted successfully!', 'success');
+
+                setTimeout(() => {
+                    showSection('profile');
+                }, 1500);
+                
+            } catch (error) {
+                console.error('Post job error:', error);
+                showMessage(error.message, 'error', 'post');
+                showToast('Failed to post job', 'error');
+            } finally {
+                submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Post Job';
+                submitButton.disabled = false;
+            }
+        }
+
+        // ========== UTILITY FUNCTIONS ==========
         function formatPhoneNumber(input) {
             let value = input.value.replace(/\D/g, '');
             
@@ -1811,433 +1927,6 @@
             input.value = value;
         }
 
-        // Format phone for display and calling
-        function formatPhoneForCall(phone) {
-            if (!phone) return '';
-            let digits = phone.replace(/\D/g, '');
-            
-            if (digits.startsWith('254')) {
-                return '+254' + digits.substring(3);
-            }
-            
-            return '+254' + digits;
-        }
-
-        // WhatsApp Integration
-        function generateWhatsAppLink(job) {
-            const user = JSON.parse(localStorage.getItem('user') || 'null');
-            if (!user) {
-                return 'signin.html';
-            }
-            
-            const formattedPhone = formatPhoneForCall(job.whatsapp || job.phone);
-            const message = `Hi, I am interested in joining ${job.title} position.`;
-            return `https://wa.me/${formattedPhone.replace('+', '')}?text=${encodeURIComponent(message)}`;
-        }
-
-        // Backend API Integration
-        async function loadJobs() {
-            try {
-                showMessage('Loading jobs...', 'info', 'jobs');
-                
-                // In a real app, this would fetch from an API
-                // For demo purposes, we'll use localStorage
-                const savedJobs = JSON.parse(localStorage.getItem('jobs') || '[]');
-                
-                if (savedJobs && Array.isArray(savedJobs)) {
-                    currentJobs = savedJobs;
-                } else {
-                    currentJobs = [];
-                }
-                
-                applyCurrentSort();
-                displayJobs(currentJobs);
-                updatePagination();
-                showMessage('', 'success', 'jobs');
-                
-            } catch (error) {
-                console.error('Error loading jobs:', error);
-                showMessage('Failed to load jobs from server', 'error', 'jobs');
-                loadCachedData();
-            }
-        }
-
-        function loadCachedData() {
-            // Load sample data if no jobs exist
-            if (currentJobs.length === 0) {
-                currentJobs = [
-                    {
-                        _id: 'job_1',
-                        title: 'Farm Worker Needed',
-                        description: 'Looking for experienced farm workers for seasonal harvest. Must be able to work long hours and have basic farming knowledge.',
-                        location: 'Nakuru',
-                        category: 'agriculture',
-                        phone: '254712345678',
-                        businessType: 'Farm',
-                        employerId: 'employer_1',
-                        postedDate: new Date().toISOString(),
-                        applicants: 3
-                    },
-                    {
-                        _id: 'job_2',
-                        title: 'Construction Helper',
-                        description: 'Immediate opening for construction helpers at a new site. No experience required, training provided.',
-                        location: 'Kiambu',
-                        category: 'construction',
-                        phone: '254723456789',
-                        businessType: 'Construction Company',
-                        employerId: 'employer_2',
-                        postedDate: new Date(Date.now() - 86400000).toISOString(),
-                        applicants: 5
-                    },
-                    {
-                        _id: 'job_3',
-                        title: 'Domestic Helper',
-                        description: 'Looking for reliable domestic helper for household chores and childcare. Must be trustworthy and have references.',
-                        location: 'Nairobi',
-                        category: 'domestic',
-                        phone: '254734567890',
-                        businessType: 'Family',
-                        employerId: 'employer_3',
-                        postedDate: new Date(Date.now() - 172800000).toISOString(),
-                        applicants: 2
-                    }
-                ];
-                localStorage.setItem('jobs', JSON.stringify(currentJobs));
-            }
-        }
-
-        async function handleJobSubmit(e) {
-            e.preventDefault();
-            
-            const user = JSON.parse(localStorage.getItem('user') || 'null');
-            if (!user) {
-                showMessage('Please sign in to post a job', 'error', 'post');
-                showToast('Please sign in to post a job', 'warning');
-                return;
-            }
-
-            if (!validateForm()) return;
-
-            const jobData = collectFormData();
-            const submitButton = document.querySelector('#job-form button[type="submit"]');
-            
-            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Posting...';
-            submitButton.disabled = true;
-
-            try {
-                // In a real app, this would be an API call
-                // For demo, we'll simulate with localStorage
-                const newJob = {
-                    _id: 'job_' + Date.now(),
-                    ...jobData,
-                    postedDate: new Date().toISOString(),
-                    applicants: 0
-                };
-
-                // Add to current jobs and update UI
-                currentJobs.unshift(newJob);
-                localStorage.setItem('jobs', JSON.stringify(currentJobs));
-                displayJobs(currentJobs);
-                
-                // Add to user's jobs
-                userProfile.jobsPosted.unshift(newJob);
-                loadMyJobs();
-                
-                showMessage('Job posted successfully!', 'success', 'post');
-                document.getElementById('job-form').reset();
-                showToast('Job posted successfully!', 'success');
-
-                // Simulate real-time update to other devices
-                simulateRealTimeUpdate(newJob);
-
-                setTimeout(() => {
-                    showSection('profile');
-                }, 1500);
-                
-            } catch (error) {
-                console.error('Post job error:', error);
-                showMessage('Failed to post job. Please try again.', 'error', 'post');
-                showToast('Failed to post job', 'error');
-            } finally {
-                submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Post Job';
-                submitButton.disabled = false;
-            }
-        }
-
-        // Simulate real-time updates (in a real app, this would use WebSockets or similar)
-        function startRealTimeUpdates() {
-            realTimeInterval = setInterval(() => {
-                // Simulate new jobs being added by other users
-                if (Math.random() > 0.7) {
-                    const sampleJobs = [
-                        {
-                            _id: 'job_' + Date.now(),
-                            title: 'Sample Farm Worker',
-                            description: 'Looking for experienced farm workers for seasonal harvest.',
-                            location: 'Nakuru',
-                            category: 'agriculture',
-                            phone: '254712345678',
-                            businessType: 'Farm',
-                            employerId: 'other_user',
-                            postedDate: new Date().toISOString(),
-                            applicants: Math.floor(Math.random() * 5)
-                        },
-                        {
-                            _id: 'job_' + (Date.now() + 1),
-                            title: 'Construction Helper',
-                            description: 'Immediate opening for construction helpers at a new site.',
-                            location: 'Kiambu',
-                            category: 'construction',
-                            phone: '254723456789',
-                            businessType: 'Construction Company',
-                            employerId: 'other_user',
-                            postedDate: new Date().toISOString(),
-                            applicants: Math.floor(Math.random() * 3)
-                        }
-                    ];
-                    
-                    const randomJob = sampleJobs[Math.floor(Math.random() * sampleJobs.length)];
-                    
-                    // Only add if not already in the list
-                    if (!currentJobs.find(job => job._id === randomJob._id)) {
-                        currentJobs.unshift(randomJob);
-                        localStorage.setItem('jobs', JSON.stringify(currentJobs));
-                        displayJobs(currentJobs);
-                        updatePagination();
-                        
-                        // Show notification for new job
-                        if (Math.random() > 0.5) {
-                            showToast(`New job posted: ${randomJob.title}`, 'info');
-                        }
-                    }
-                }
-            }, 10000); // Check every 10 seconds
-        }
-
-        function simulateRealTimeUpdate(job) {
-            // In a real application, this would broadcast to other connected clients
-            console.log('Job posted - would broadcast to other devices:', job.title);
-            
-            // For demo purposes, we'll just log this
-            setTimeout(() => {
-                showToast(`Your job "${job.title}" is now visible to others`, 'success');
-            }, 2000);
-        }
-
-        function validateForm() {
-            const title = document.getElementById('job-title').value.trim();
-            const description = document.getElementById('job-description').value.trim();
-            const location = document.getElementById('job-location').value.trim();
-            const phone = document.getElementById('employer-phone').value.trim();
-
-            if (!title || title.length < 3) {
-                showMessage('Job title must be at least 3 characters', 'error', 'post');
-                return false;
-            }
-
-            if (!description || description.length < 10) {
-                showMessage('Please provide a detailed job description', 'error', 'post');
-                return false;
-            }
-
-            if (!location) {
-                showMessage('Location is required', 'error', 'post');
-                return false;
-            }
-
-            if (!phone) {
-                showMessage('Phone number is required', 'error', 'post');
-                return false;
-            }
-
-            const cleanPhone = phone.replace(/\D/g, '');
-            const phoneRegex = /^(254|0)?[17]\d{8}$/;
-            
-            if (!phoneRegex.test(cleanPhone)) {
-                showMessage('Please enter a valid Kenyan phone number (e.g., 712345678)', 'error', 'post');
-                return false;
-            }
-
-            return true;
-        }
-
-        function collectFormData() {
-            const formatPhone = (phone) => {
-                return phone.replace(/\D/g, '');
-            };
-            
-            const phone = document.getElementById('employer-phone').value.trim();
-            const whatsapp = document.getElementById('employer-whatsapp').value.trim();
-            
-            return {
-                title: document.getElementById('job-title').value.trim(),
-                description: document.getElementById('job-description').value.trim(),
-                location: document.getElementById('job-location').value.trim(),
-                category: document.getElementById('job-category').value,
-                phone: formatPhone(phone),
-                whatsapp: whatsapp ? formatPhone(whatsapp) : '',
-                businessType: document.getElementById('business-type').value.trim() || 'Individual',
-                employerId: userProfile.id,
-                postedDate: new Date().toISOString(),
-                applicants: 0 // Initialize with 0 applicants
-            };
-        }
-
-        // Load user's jobs
-        function loadMyJobs() {
-            const myJobsList = document.getElementById('my-jobs-list');
-            const totalJobsEl = document.getElementById('total-jobs');
-            const totalApplicantsEl = document.getElementById('total-applicants');
-            const activeJobsEl = document.getElementById('active-jobs');
-            
-            if (!myJobsList) return;
-            
-            // Filter jobs posted by the current user
-            const myJobs = currentJobs.filter(job => job.employerId === userProfile.id);
-            
-            // Update stats
-            totalJobsEl.textContent = myJobs.length;
-            
-            const totalApplicants = myJobs.reduce((sum, job) => sum + (job.applicants || 0), 0);
-            totalApplicantsEl.textContent = totalApplicants;
-            
-            const activeJobs = myJobs.filter(job => !job.isDeleted).length;
-            activeJobsEl.textContent = activeJobs;
-            
-            // Display jobs
-            if (myJobs.length === 0) {
-                myJobsList.innerHTML = '<div class="message info">You haven\'t posted any jobs yet. <a href="#" onclick="showSection(\'post\')">Post your first job</a></div>';
-                return;
-            }
-            
-            myJobsList.innerHTML = myJobs.map(job => `
-                <div class="my-job-card" data-job-id="${job._id}">
-                    <div class="my-job-header">
-                        <div>
-                            <h3 class="my-job-title">${job.title} <span class="category-badge">${job.category}</span></h3>
-                            <div class="my-job-meta">
-                                <div class="my-job-meta-item">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span>${job.location}</span>
-                                </div>
-                                <div class="my-job-meta-item">
-                                    <i class="fas fa-calendar"></i>
-                                    <span>${new Date(job.postedDate).toLocaleDateString()}</span>
-                                </div>
-                                <div class="applicant-count">
-                                    <i class="fas fa-users"></i>
-                                    <span>${job.applicants || 0} applicants</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="my-job-actions">
-                            <button class="btn-edit" onclick="openEditModal('${job._id}')">
-                                <i class="fas fa-edit"></i> Edit
-                            </button>
-                            <button class="btn-delete" onclick="deleteJob('${job._id}')">
-                                <i class="fas fa-trash"></i> Delete
-                            </button>
-                        </div>
-                    </div>
-                    <p>${job.description}</p>
-                </div>
-            `).join('');
-        }
-
-        // Edit job functionality
-        function openEditModal(jobId) {
-            const job = currentJobs.find(j => j._id === jobId);
-            if (!job) return;
-            
-            document.getElementById('edit-job-id').value = job._id;
-            document.getElementById('edit-job-title').value = job.title;
-            document.getElementById('edit-job-description').value = job.description;
-            document.getElementById('edit-job-location').value = job.location;
-            document.getElementById('edit-job-category').value = job.category;
-            
-            document.getElementById('editJobModal').style.display = 'flex';
-        }
-
-        function closeEditModal() {
-            document.getElementById('editJobModal').style.display = 'none';
-        }
-
-        async function handleJobEdit(e) {
-            e.preventDefault();
-            
-            const jobId = document.getElementById('edit-job-id').value;
-            const jobIndex = currentJobs.findIndex(j => j._id === jobId);
-            
-            if (jobIndex === -1) {
-                showToast('Job not found', 'error');
-                return;
-            }
-            
-            const updatedJob = {
-                ...currentJobs[jobIndex],
-                title: document.getElementById('edit-job-title').value.trim(),
-                description: document.getElementById('edit-job-description').value.trim(),
-                location: document.getElementById('edit-job-location').value.trim(),
-                category: document.getElementById('edit-job-category').value
-            };
-            
-            try {
-                // In a real app, this would be an API call
-                currentJobs[jobIndex] = updatedJob;
-                localStorage.setItem('jobs', JSON.stringify(currentJobs));
-                displayJobs(currentJobs);
-                loadMyJobs();
-                
-                closeEditModal();
-                showToast('Job updated successfully!', 'success');
-                
-            } catch (error) {
-                console.error('Update job error:', error);
-                showToast('Failed to update job', 'error');
-            }
-        }
-
-        // Delete job functionality
-        async function deleteJob(jobId) {
-            if (!confirm('Are you sure you want to delete this job?')) return;
-            
-            const jobIndex = currentJobs.findIndex(j => j._id === jobId);
-            
-            if (jobIndex === -1) {
-                showToast('Job not found', 'error');
-                return;
-            }
-            
-            try {
-                // In a real app, this would be an API call
-                currentJobs.splice(jobIndex, 1);
-                localStorage.setItem('jobs', JSON.stringify(currentJobs));
-                displayJobs(currentJobs);
-                loadMyJobs();
-                
-                showToast('Job deleted successfully!', 'success');
-                
-            } catch (error) {
-                console.error('Delete job error:', error);
-                showToast('Failed to delete job', 'error');
-            }
-        }
-
-        // Utility Functions
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        // Toast Notifications
         function showToast(message, type) {
             const toastContainer = document.getElementById('toast-container');
             const toast = document.createElement('div');
@@ -2267,7 +1956,6 @@
             }
         }
 
-        // Section Navigation
         function showSection(sectionId) {
             document.querySelectorAll('section').forEach(section => {
                 section.style.display = 'none';
@@ -2294,7 +1982,90 @@
             }
         }
 
-        // Blog functionality
+        // ========== SAMPLE DATA FOR DEMO ==========
+        function loadSampleData() {
+            currentJobs = [
+                {
+                    _id: '1',
+                    title: 'Farm Worker Needed',
+                    description: 'Looking for experienced farm workers for seasonal harvest. Must be able to work long hours and have basic farming knowledge.',
+                    location: 'Nakuru',
+                    category: 'agriculture',
+                    phone: '254712345678',
+                    businessType: 'Farm',
+                    employerName: 'Local Farmer',
+                    createdAt: new Date().toISOString(),
+                    applicants: 3
+                },
+                {
+                    _id: '2',
+                    title: 'Construction Helper',
+                    description: 'Immediate opening for construction helpers at a new site. No experience required, training provided.',
+                    location: 'Kiambu',
+                    category: 'construction',
+                    phone: '254723456789',
+                    businessType: 'Construction Company',
+                    employerName: 'Build It Ltd',
+                    createdAt: new Date(Date.now() - 86400000).toISOString(),
+                    applicants: 5
+                }
+            ];
+            displayJobs(currentJobs);
+        }
+
+        // ========== BLOG CONTENT ==========
+        const blogContent = {
+            'agriculture': {
+                title: 'Agriculture Opportunities Growing in Rural Areas',
+                icon: 'fas fa-tractor',
+                content: `
+                    <h3>The Growing Demand for Agricultural Workers</h3>
+                    <p>Rural Kenya is experiencing a significant increase in agricultural job opportunities...</p>
+                `
+            },
+            'construction': {
+                title: 'Construction Boom Creates New Jobs',
+                icon: 'fas fa-tools',
+                content: `
+                    <h3>Construction Industry Expansion</h3>
+                    <p>Kenya's construction sector is experiencing unprecedented growth...</p>
+                `
+            },
+            'domestic': {
+                title: 'Domestic Work Opportunities',
+                icon: 'fas fa-home',
+                content: `
+                    <h3>The Domestic Work Sector in Kenya</h3>
+                    <p>Domestic work remains one of the largest employment sectors in Kenya...</p>
+                `
+            }
+        };
+
+        // ========== GLOBAL FUNCTION EXPORTS ==========
+        window.showSection = showSection;
+        window.clearForm = clearForm;
+        window.sortJobs = sortJobs;
+        window.openBlog = openBlog;
+        window.closeBlogModal = closeBlogModal;
+        window.openEditModal = openEditModal;
+        window.closeEditModal = closeEditModal;
+        window.deleteJob = deleteJob;
+        window.formatPhoneNumber = formatPhoneNumber;
+        window.showAuthModal = showAuthModal;
+        window.closeAuthModal = closeAuthModal;
+
+        function clearForm() {
+            document.getElementById('job-form').reset();
+            showToast('Form cleared', 'info');
+        }
+
+        function sortJobs(criteria) {
+            currentSort = criteria;
+            applyCurrentSort();
+            displayJobs(currentJobs);
+            showToast(`Sorted by ${criteria}`, 'info');
+        }
+
         function openBlog(blogId) {
             const blog = blogContent[blogId];
             if (!blog) return;
@@ -2309,173 +2080,12 @@
             document.getElementById('blogModal').style.display = 'none';
         }
 
-        // Export functions for global access
-        window.showSection = showSection;
-        window.clearForm = clearForm;
-        window.sortJobs = sortJobs;
-        window.openBlog = openBlog;
-        window.closeBlogModal = closeBlogModal;
-        window.openEditModal = openEditModal;
-        window.closeEditModal = closeEditModal;
-        window.deleteJob = deleteJob;
-        window.generateWhatsAppLink = generateWhatsAppLink;
-        window.formatPhoneNumber = formatPhoneNumber;
-
-        // Initialize other functions
-        function clearForm() {
-            document.getElementById('job-form').reset();
-            showToast('Form cleared', 'info');
+        function closeEditModal() {
+            document.getElementById('editJobModal').style.display = 'none';
         }
 
-        function sortJobs(criteria) {
-            currentSort = criteria;
-            applyCurrentSort();
-            displayJobs(currentJobs);
-            showToast(`Sorted by ${criteria}`, 'info');
-        }
-
-        function applyCurrentSort() {
-            switch (currentSort) {
-                case 'newest':
-                    currentJobs.sort((a, b) => new Date(b.postedDate) - new Date(a.postedDate));
-                    break;
-                case 'location':
-                    currentJobs.sort((a, b) => a.location.localeCompare(b.location));
-                    break;
-                case 'category':
-                    currentJobs.sort((a, b) => a.category.localeCompare(b.category));
-                    break;
-            }
-        }
-
-        function handleSearchInput(e) {
-            const query = e.target.value.toLowerCase();
-            if (query.length < 2) return;
-            
-            const filteredJobs = currentJobs.filter(job => 
-                job.title.toLowerCase().includes(query) ||
-                job.description.toLowerCase().includes(query) ||
-                job.location.toLowerCase().includes(query)
-            );
-            displaySearchResults(filteredJobs);
-        }
-
-        function displaySearchResults(jobs) {
-            const results = document.getElementById('search-results');
-            const message = document.getElementById('search-message');
-            
-            results.innerHTML = '';
-            
-            if (!jobs || jobs.length === 0) {
-                message.innerHTML = '<div class="message info">No jobs found matching your search.</div>';
-                return;
-            }
-            
-            message.innerHTML = `<div class="message success">Found ${jobs.length} jobs</div>`;
-            
-            jobs.forEach(job => {
-                const div = document.createElement('div');
-                div.className = 'job-listing';
-                div.innerHTML = generateJobHTML(job);
-                results.appendChild(div);
-            });
-        }
-
-        function generateJobHTML(job) {
-            const postedDate = new Date(job.postedDate).toLocaleDateString();
-            const user = JSON.parse(localStorage.getItem('user') || 'null');
-            const formattedPhone = formatPhoneForCall(job.phone);
-            
-            return `
-                <div class="job-listing" data-job-id="${job._id}">
-                    <div class="job-details">
-                        <div class="job-content">
-                            <h3>${job.title} <span class="category-badge">${job.category}</span></h3>
-                            <p>${job.description}</p>
-                            <div class="job-meta">
-                                <div class="meta-item">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span>${job.location}</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-calendar"></i>
-                                    <span>${postedDate}</span>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="fas fa-building"></i>
-                                    <span>${job.businessType || 'Individual'}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="communication">
-                            ${user ? `
-                                <a href="tel:${formattedPhone}" class="btn-call">
-                                    <i class="fas fa-phone"></i> Call
-                                </a>
-                                ${job.whatsapp || job.phone ? `
-                                    <a href="${generateWhatsAppLink(job)}" class="btn-whatsapp" target="_blank">
-                                        <i class="fab fa-whatsapp"></i> WhatsApp
-                                    </a>
-                                ` : ''}
-                            ` : `
-                                <a href="signin.html" class="btn-call">
-                                    <i class="fas fa-sign-in-alt"></i> Sign In to Contact
-                                </a>
-                            `}
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        function displayJobs(jobs) {
-            const container = document.getElementById('job-listings');
-            if (!container) return;
-                
-            if (!jobs || jobs.length === 0) {
-                container.innerHTML = '<div class="message info">No jobs found. Be the first to post a job!</div>';
-                return;
-            }
-            
-            const startIndex = (currentPage - 1) * jobsPerPage;
-            const paginatedJobs = jobs.slice(startIndex, startIndex + jobsPerPage);
-            
-            container.innerHTML = paginatedJobs.map(job => generateJobHTML(job)).join('');
-        }
-
-        function updatePagination() {
-            const totalPages = Math.ceil(currentJobs.length / jobsPerPage);
-            const container = document.getElementById('pagination');
-            if (!container || totalPages <= 1) {
-                container.innerHTML = '';
-                return;
-            }
-            
-            let paginationHTML = '';
-            
-            if (currentPage > 1) {
-                paginationHTML += `<button class="page-btn" onclick="currentPage = ${currentPage - 1}; displayJobs(currentJobs);">
-                    <i class="fas fa-chevron-left"></i> Previous
-                </button>`;
-            }
-            
-            for (let i = 1; i <= totalPages; i++) {
-                paginationHTML += `<button class="page-btn ${i === currentPage ? 'active' : ''}" 
-                    onclick="currentPage = ${i}; displayJobs(currentJobs);">${i}</button>`;
-            }
-            
-            if (currentPage < totalPages) {
-                paginationHTML += `<button class="page-btn" onclick="currentPage = ${currentPage + 1}; displayJobs(currentJobs);">
-                    Next <i class="fas fa-chevron-right"></i>
-                </button>`;
-            }
-            
-            container.innerHTML = paginationHTML;
-        }
-
-        // Initialize the application when DOM is loaded
+        // ========== INITIALIZE APP ==========
         document.addEventListener('DOMContentLoaded', function() {
-            updateAuthUI();
             initializeApp();
         });
     </script>
