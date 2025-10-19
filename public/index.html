@@ -1,0 +1,2491 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kazi Mashinani - Rural Job Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #60a5fa;
+            --light-blue: #dbeafe;
+            --text-color: #1f2937;
+            --light-bg: #f0f9ff;
+            --white: #ffffff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 14px;
+            min-height: 100vh;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+
+        /* Header with animated gradient */
+        header {
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.8rem 0;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-2);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+
+        header:hover::before {
+            opacity: 1;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .logo h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .logo p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        /* Top Navigation Bar */
+        .top-nav {
+            background: var(--white);
+            padding: 0.8rem 0;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            min-width: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-item:hover::before {
+            left: 0;
+        }
+
+        .nav-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-item.active {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-icon {
+            font-size: 1.3rem;
+            margin-bottom: 0.4rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .nav-icon {
+            transform: scale(1.2);
+        }
+
+        .nav-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 1.5rem auto;
+            padding: 0 20px;
+        }
+
+        /* Glassmorphism Containers */
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Blog Section */
+        .blog-hero {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-2);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .blog-hero:hover::before {
+            opacity: 0.3;
+        }
+
+        .blog-hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .blog-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        /* Animated Blog Cards */
+        .blog-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .blog-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .blog-card:hover .blog-image::after {
+            opacity: 0.3;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .blog-card:hover .blog-content h3 {
+            color: var(--secondary-color);
+        }
+
+        .blog-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        /* Get Started Section */
+        .get-started {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .get-started h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .action-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .action-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .action-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent-color);
+        }
+
+        .action-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .action-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .action-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Profile Section */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .profile-info h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-info p {
+            opacity: 0.9;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* My Jobs Section */
+        .my-jobs-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .my-job-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .my-job-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .my-job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .my-job-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .my-job-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .my-job-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .applicant-count {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--light-blue);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        .my-job-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Search Section */
+        .search-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        #search-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+            transform: scale(1.02);
+        }
+
+        /* Enhanced Job Listings */
+        .job-listing {
+            background: var(--white);
+            border: 1px solid #e9ecef;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-listing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-1);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
+        }
+
+        .job-listing:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateX(5px);
+        }
+
+        .job-listing:hover::before {
+            transform: scaleY(1);
+        }
+
+        .job-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .job-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 1rem;
+            margin: 0.8rem 0;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* Enhanced Communication Buttons */
+        .communication {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .communication a, .communication button {
+            padding: 8px 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .communication a::before, .communication button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .communication a:hover::before, .communication button:hover::before {
+            left: 100%;
+        }
+
+        .btn-call {
+            background: #0078D4;
+            color: white;
+        }
+
+        .btn-call:hover {
+            background: #0066b8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,120,212,0.3);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(37,211,102,0.3);
+        }
+
+        .btn-edit {
+            background: #FF9800;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #F57C00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255,152,0,0.3);
+        }
+
+        .btn-delete {
+            background: #F44336;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #D32F2F;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(244,67,54,0.3);
+        }
+
+        /* Enhanced Forms */
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Enhanced Buttons */
+        .btn-primary {
+            background: #2196F3;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            flex: 1;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #1976D2;
+            transition: left 0.3s ease;
+            z-index: 1;
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(33,150,243,0.3);
+        }
+
+        .btn-primary span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-secondary {
+            background: #607D8B;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #455A64;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(96,125,139,0.3);
+        }
+
+        /* Messages with animations */
+        .message {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.85rem;
+            animation: slideInDown 0.5s ease;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        /* Footer with gradient */
+        footer {
+            background: var(--gradient-1);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .category-badge {
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            text-transform: capitalize;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .page-btn {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover {
+            background: var(--light-blue);
+            transform: translateY(-2px);
+        }
+
+        .page-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .section-header i {
+            font-size: 1.3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 1.5rem;
+        }
+
+        /* Edit Job Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--danger);
+        }
+
+        /* Toast Container */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .toast {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            max-width: 300px;
+            animation: slideInRight 0.5s ease;
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--success);
+        }
+
+        .toast.error {
+            border-left: 4px solid var(--danger);
+        }
+
+        .toast.warning {
+            border-left: 4px solid var(--warning);
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Blog Detail Modal */
+        .blog-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .blog-modal-content {
+            background: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        .blog-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .blog-modal-image {
+            width: 100%;
+            height: 300px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .blog-modal-body {
+            padding: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                justify-content: space-around;
+            }
+
+            .nav-item {
+                min-width: 60px;
+                padding: 0.4rem 0.6rem;
+            }
+
+            .nav-icon {
+                font-size: 1rem;
+            }
+
+            .nav-text {
+                font-size: 0.7rem;
+            }
+
+            .job-details {
+                flex-direction: column;
+            }
+
+            .communication {
+                justify-content: center;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-modal-content {
+                padding: 1rem;
+            }
+
+            .blog-modal-image {
+                height: 200px;
+                font-size: 2rem;
+            }
+            
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .my-job-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .action-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                gap: 0.3rem;
+            }
+            
+            .nav-item {
+                min-width: 50px;
+                padding: 0.3rem 0.4rem;
+            }
+            
+            .nav-text {
+                font-size: 0.65rem;
+            }
+        }
+    </style>
+</head>
+<body>
+ 
+<header>
+    <div class="header-content">
+        <div class="logo">
+            <i class="fas fa-hands-helping"></i>
+            <div>
+                <h1>Kazi Mashinani</h1>
+                <p>Connecting Rural Workers with Local Opportunities</p>
+            </div>
+        </div>
+        <div id="auth-section">
+            <!-- This will be populated by JavaScript -->
+        </div>
+    </div>
+</header>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <div class="nav-container">
+            <div class="nav-item active" onclick="showSection('home')">
+                <div class="nav-icon"><i class="fas fa-home"></i></div>
+                <div class="nav-text">Home</div>
+            </div>
+            <div class="nav-item" onclick="showSection('search')">
+                <div class="nav-icon"><i class="fas fa-search"></i></div>
+                <div class="nav-text">Search</div>
+            </div>
+            <div class="nav-item" onclick="showSection('post')">
+                <div class="nav-icon"><i class="fas fa-plus-circle"></i></div>
+                <div class="nav-text">Post Job</div>
+            </div>
+            <div class="nav-item" onclick="showSection('jobs')">
+                <div class="nav-icon"><i class="fas fa-briefcase"></i></div>
+                <div class="nav-text">Jobs</div>
+            </div>
+            <div class="nav-item" onclick="showSection('profile')">
+                <div class="nav-icon"><i class="fas fa-user"></i></div>
+                <div class="nav-text">Profile</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Home Section -->
+        <section id="home">
+            <div class="blog-hero">
+                <h1><i class="fas fa-handshake"></i> Karibu Kazi Mashinani</h1>
+                <p>Empowering Rural Communities Through Employment Opportunities</p>
+            </div>
+
+            <div class="container">
+                <div class="section-header">
+                    <i class="fas fa-newspaper"></i>
+                    <h2>Job Opportunities Blog</h2>
+                </div>
+
+                <!-- Blog Grid -->
+                <div class="blog-grid">
+                    <div class="blog-card" onclick="openBlog('agriculture')">
+                        <div class="blog-image">
+                            <i class="fas fa-tractor"></i>
+                        </div>
+                        <div class="blog-content">
+                            <h3>Agriculture Opportunities Growing in Rural Areas</h3>
+                            <p>Discover the latest farming and agricultural job opportunities across rural Kenya. From seasonal farm work to permanent positions.</p>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="blog-card" onclick="openBlog('construction')">
+                        <div class="blog-image">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="blog-content">
+                            <h3>Construction Boom Creates New Jobs</h3>
+                            <p>With infrastructure development accelerating, construction jobs are plentiful in rural towns and emerging urban centers.</p>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="blog-card" onclick="openBlog('domestic')">
+                        <div class="blog-image">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="blog-content">
+                            <h3>Domestic Work Opportunities</h3>
+                            <p>Reliable domestic helpers are in high demand. Learn about the requirements and benefits of domestic work positions.</p>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Let's Get Started Section -->
+            <div class="get-started">
+                <h2>Let's Get Started</h2>
+                <p>Find your next opportunity or post a job to find the perfect candidate</p>
+                
+                <div class="action-cards">
+                    <div class="action-card" onclick="showSection('search')">
+                        <div class="action-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Search Jobs</h3>
+                        <p>Browse through available job opportunities in your area. Filter by category, location, and more.</p>
+                        <button class="btn-primary">Find Jobs</button>
+                    </div>
+                    
+                    <div class="action-card" onclick="showSection('post')">
+                        <div class="action-icon">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
+                        <h3>Post a Job</h3>
+                        <p>Have a job opening? Post it here to reach qualified candidates in your community.</p>
+                        <button class="btn-primary">Post Job</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section id="search" style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <i class="fas fa-search"></i>
+                    <h2>Find Jobs</h2>
+                </div>
+                
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search by job title, skills, or description...">
+                </div>
+
+                <div id="search-results"></div>
+                <div id="search-message"></div>
+            </div>
+        </section>
+
+        <!-- Post Job Section -->
+        <section id="post" style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <i class="fas fa-plus-circle"></i>
+                    <h2>Post a Job</h2>
+                </div>
+                <div id="post-message"></div>
+                
+                <form id="job-form">
+                    <div class="form-group">
+                        <label>Job Title *</label>
+                        <input type="text" id="job-title" placeholder="e.g., Farm Manager, Construction Worker..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Job Description *</label>
+                        <textarea id="job-description" placeholder="Describe the job responsibilities and requirements..." rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Location *</label>
+                        <input type="text" id="job-location" placeholder="Town, village, or area..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="job-category">
+                            <option value="general">General</option>
+                            <option value="agriculture">Agriculture</option>
+                            <option value="construction">Construction</option>
+                            <option value="domestic">Domestic Work</option>
+                            <option value="driving">Driving</option>
+                            <option value="retail">Retail</option>
+                        </select>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" id="employer-phone" placeholder="e.g., 712345678" required oninput="formatPhoneNumber(this)">
+                            <small style="color: #666; font-size: 0.75rem;">Enter any format, we'll correct it automatically</small>
+                        </div>
+                        <div class="form-group">
+                            <label>WhatsApp (Optional)</label>
+                            <input type="tel" id="employer-whatsapp" placeholder="e.g., 712345678" oninput="formatPhoneNumber(this)">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Business Type (Optional)</label>
+                        <input type="text" id="business-type" placeholder="e.g., Shop, Salon, Farm, Construction Company">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> <span>Post Job</span>
+                        </button>
+                        <button type="button" class="btn-secondary" onclick="clearForm()">
+                            <i class="fas fa-eraser"></i> Clear
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Jobs Section -->
+        <section id="jobs" style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <i class="fas fa-briefcase"></i>
+                    <h2>Available Jobs</h2>
+                </div>
+                <div id="jobs-message"></div>
+                
+                <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                    <button class="btn-secondary" onclick="sortJobs('newest')">
+                        <i class="fas fa-sort-amount-down"></i> Newest
+                    </button>
+                    <button class="btn-secondary" onclick="sortJobs('location')">
+                        <i class="fas fa-map-marker-alt"></i> By Location
+                    </button>
+                    <button class="btn-secondary" onclick="sortJobs('category')">
+                        <i class="fas fa-tags"></i> By Category
+                    </button>
+                </div>
+
+                <div id="job-listings"></div>
+                
+                <div class="pagination" id="pagination"></div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile" style="display: none;">
+            <div class="container">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h2>Profile</h2>
+                        <p>Manage your jobs and view your activity</p>
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-jobs">0</div>
+                        <div class="stat-label">Total Jobs Posted</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-applicants">0</div>
+                        <div class="stat-label">Total Applicants</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="active-jobs">0</div>
+                        <div class="stat-label">Active Jobs</div>
+                    </div>
+                </div>
+
+                <div class="section-header">
+                    <i class="fas fa-briefcase"></i>
+                    <h2>My Posted Jobs</h2>
+                </div>
+
+                <div id="profile-message"></div>
+
+                <div class="my-jobs-list" id="my-jobs-list">
+                    <!-- My jobs will be displayed here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Edit Job Modal -->
+    <div class="modal" id="editJobModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Job</h3>
+                <button class="close-modal" onclick="closeEditModal()">&times;</button>
+            </div>
+            <form id="edit-job-form">
+                <input type="hidden" id="edit-job-id">
+                <div class="form-group">
+                    <label>Job Title *</label>
+                    <input type="text" id="edit-job-title" required>
+                </div>
+                <div class="form-group">
+                    <label>Job Description *</label>
+                    <textarea id="edit-job-description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Location *</label>
+                    <input type="text" id="edit-job-location" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="edit-job-category">
+                        <option value="general">General</option>
+                        <option value="agriculture">Agriculture</option>
+                        <option value="construction">Construction</option>
+                        <option value="domestic">Domestic Work</option>
+                        <option value="driving">Driving</option>
+                        <option value="retail">Retail</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Update Job</button>
+                    <button type="button" class="btn-secondary" onclick="closeEditModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Blog Detail Modal -->
+    <div class="blog-modal" id="blogModal">
+        <div class="blog-modal-content">
+            <div class="blog-modal-header">
+                <h2 id="blog-modal-title">Blog Title</h2>
+                <button class="close-modal" onclick="closeBlogModal()">&times;</button>
+            </div>
+            <div class="blog-modal-image" id="blog-modal-image">
+                <i class="fas fa-newspaper"></i>
+            </div>
+            <div class="blog-modal-body" id="blog-modal-body">
+                <!-- Blog content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Kazi Mashinani</h3>
+            <p>Connecting Rural Workers with Local Opportunities</p>
+            <div style="margin-top: 1rem;">
+                &copy; 2025 Kazi Mashinani. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== AUTHENTICATION MANAGEMENT ==========
+        function updateAuthUI() {
+            const authSection = document.getElementById('auth-section');
+            const user = JSON.parse(localStorage.getItem('user') || 'null');
+            const token = localStorage.getItem('token');
+
+            if (user && token) {
+                // User is logged in - redirect to appropriate dashboard
+                if (user.role === 'employer') {
+                    window.location.href = 'employer.html';
+                } else if (user.role === 'employee') {
+                    window.location.href = 'employee.html';
+                } else {
+                    // User is logged in but no role assigned (shouldn't happen)
+                    authSection.innerHTML = `
+                        <div class="user-menu" style="display: flex; align-items: center; gap: 1rem;">
+                            <div class="user-info" style="text-align: right;">
+                                <div style="font-weight: 600;">${user.name}</div>
+                                <div style="font-size: 0.8rem; opacity: 0.8;">User</div>
+                            </div>
+                            <button onclick="signOut()" class="btn-secondary" style="padding: 8px 16px;">
+                                <i class="fas fa-sign-out-alt"></i> Sign Out
+                            </button>
+                        </div>
+                    `;
+                }
+            } else {
+                // User is not logged in
+                authSection.innerHTML = `
+                    <div class="auth-buttons" style="display: flex; gap: 0.5rem;">
+                        <a href="signin.html" class="btn-secondary" style="padding: 8px 16px;">
+                            <i class="fas fa-sign-in-alt"></i> Sign In
+                        </a>
+                        <a href="signup.html" class="btn-primary" style="padding: 8px 16px;">
+                            <i class="fas fa-user-plus"></i> Sign Up
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
+        function signOut() {
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            updateAuthUI();
+            showToast('Signed out successfully', 'success');
+            
+            // Reload jobs to reflect logged out state
+            loadJobs();
+            loadMyJobs();
+        }
+
+        // Update job posting to require authentication
+        async function handleJobSubmit(e) {
+            e.preventDefault();
+            
+            const user = JSON.parse(localStorage.getItem('user') || 'null');
+            if (!user) {
+                showMessage('Please sign in to post a job', 'error', 'post');
+                showToast('Please sign in to post a job', 'warning');
+                return;
+            }
+
+            // Continue with your existing job posting logic...
+            if (!validateForm()) return;
+
+            const jobData = collectFormData();
+            jobData.employerId = user._id || user.phone; // Use phone as fallback ID
+            
+            // Rest of your existing job submission code...
+            // ... (your existing job posting code)
+        }
+
+        // Update profile section
+        function loadMyJobs() {
+            const user = JSON.parse(localStorage.getItem('user') || 'null');
+            
+            if (!user) {
+                const myJobsList = document.getElementById('my-jobs-list');
+                if (myJobsList) {
+                    myJobsList.innerHTML = `
+                        <div class="message info">
+                            <p>Please <a href="signin.html" style="color: var(--primary-color);">sign in</a> to view your posted jobs.</p>
+                        </div>
+                    `;
+                }
+                return;
+            }
+
+            // Your existing loadMyJobs logic for logged-in users
+            const myJobs = currentJobs.filter(job => job.employerId === (user._id || user.phone));
+            // ... rest of your function
+        }
+
+        // Initialize auth when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAuthUI();
+            
+            // Protect job posting navigation
+            const postJobNav = document.querySelector('.nav-item[onclick="showSection(\'post\')"]');
+            if (postJobNav) {
+                postJobNav.addEventListener('click', function(e) {
+                    const user = JSON.parse(localStorage.getItem('user') || 'null');
+                    if (!user) {
+                        e.preventDefault();
+                        showToast('Please sign in to post a job', 'warning');
+                        showSection('home');
+                        return false;
+                    }
+                });
+            }
+        });
+        
+        // ========== BLOG CONTENT ==========
+        const blogContent = {
+            'agriculture': {
+                title: 'Agriculture Opportunities Growing in Rural Areas',
+                icon: 'fas fa-tractor',
+                content: `
+                    <h3>The Growing Demand for Agricultural Workers</h3>
+                    <p>Rural Kenya is experiencing a significant increase in agricultural job opportunities as the sector continues to expand. From small-scale family farms to large commercial agricultural enterprises, there's a growing need for skilled and unskilled labor across various agricultural subsectors.</p>
+                    
+                    <h3>Types of Agricultural Jobs Available</h3>
+                    <ul>
+                        <li><strong>Seasonal Farm Workers:</strong> Needed during planting and harvesting seasons for crops like maize, wheat, and vegetables</li>
+                        <li><strong>Livestock Keepers:</strong> Responsible for cattle, goats, sheep, and poultry management</li>
+                        <li><strong>Farm Managers:</strong> Oversee daily farm operations and worker supervision</li>
+                        <li><strong>Irrigation Specialists:</strong> Manage water resources and irrigation systems</li>
+                        <li><strong>Crop Protection Officers:</strong> Implement pest and disease control measures</li>
+                    </ul>
+                    
+                    <h3>Emerging Opportunities</h3>
+                    <p>The agricultural sector is evolving with new opportunities in:</p>
+                    <ul>
+                        <li><strong>Agri-tech:</strong> Digital farming solutions and mobile-based agricultural services</li>
+                        <li><strong>Organic Farming:</strong> Growing demand for organic produce in local and international markets</li>
+                        <li><strong>Value Addition:</strong> Food processing and packaging opportunities</li>
+                        <li><strong>Greenhouse Farming:</strong> Year-round production of high-value crops</li>
+                    </ul>
+                    
+                    <h3>Skills in Demand</h3>
+                    <p>Employers are looking for workers with:</p>
+                    <ul>
+                        <li>Basic farming knowledge and experience</li>
+                        <li>Understanding of modern agricultural techniques</li>
+                        <li>Physical stamina for outdoor work</li>
+                        <li>Reliability and commitment</li>
+                        <li>Ability to work in teams</li>
+                    </ul>
+                    
+                    <p>With the government's focus on food security and agricultural modernization, the rural job market in agriculture is expected to continue growing, providing stable employment opportunities for thousands of Kenyans.</p>
+                `
+            },
+            'construction': {
+                title: 'Construction Boom Creates New Jobs',
+                icon: 'fas fa-tools',
+                content: `
+                    <h3>Construction Industry Expansion</h3>
+                    <p>Kenya's construction sector is experiencing unprecedented growth, driven by government infrastructure projects, private development, and urbanization. This boom is creating thousands of new job opportunities in rural and peri-urban areas.</p>
+                    
+                    <h3>Available Construction Positions</h3>
+                    <ul>
+                        <li><strong>General Laborers:</strong> Foundation work, material handling, and site preparation</li>
+                        <li><strong>Masons and Bricklayers:</strong> Wall construction and finishing work</li>
+                        <li><strong>Carpenters:</strong> Formwork, roofing, and interior finishing</li>
+                        <li><strong>Plumbers and Electricians:</strong> Installation of utilities and systems</li>
+                        <li><strong>Machine Operators:</strong> Operating construction equipment and machinery</li>
+                        <li><strong>Site Supervisors:</strong> Overseeing work crews and project progress</li>
+                    </ul>
+                    
+                    <h3>Major Projects Driving Employment</h3>
+                    <p>Several large-scale projects are creating construction jobs:</p>
+                    <ul>
+                        <li><strong>Affordable Housing Program:</strong> Government initiative to build 500,000 homes</li>
+                        <li><strong>Road Construction:</strong> Ongoing road networks expansion across counties</li>
+                        <li><strong>Rural Electrification:</strong> Bringing electricity to remote areas</li>
+                        <li><strong>Water Projects:</strong> Dam construction and water supply systems</li>
+                        <li><strong>Commercial Buildings:</strong> Shopping centers, offices, and industrial parks</li>
+                    </ul>
+                    
+                    <h3>Training and Certification</h3>
+                    <p>Many organizations offer construction skills training:</p>
+                    <ul>
+                        <li>National Industrial Training Authority (NITA) programs</li>
+                        <li>Youth Fund construction skills development</li>
+                        <li>Private technical training institutes</li>
+                        <li>On-the-job apprenticeship opportunities</li>
+                    </ul>
+                    
+                    <h3>Future Outlook</h3>
+                    <p>The construction sector is projected to grow at 6-8% annually, ensuring continued job creation. Workers with specialized skills in green building, modern construction techniques, and safety protocols are particularly in high demand.</p>
+                    
+                    <p>With proper training and certification, construction workers can earn competitive wages and build sustainable careers in this dynamic industry.</p>
+                `
+            },
+            'domestic': {
+                title: 'Domestic Work Opportunities',
+                icon: 'fas fa-home',
+                content: `
+                    <h3>The Domestic Work Sector in Kenya</h3>
+                    <p>Domestic work remains one of the largest employment sectors in Kenya, providing livelihoods for hundreds of thousands of workers, particularly women from rural areas. The sector is undergoing significant transformation with improved regulations and working conditions.</p>
+                    
+                    <h3>Types of Domestic Work Available</h3>
+                    <ul>
+                        <li><strong>House Help/Cleaners:</strong> General household cleaning and maintenance</li>
+                        <li><strong>Nannies and Childcare Providers:</strong> Taking care of children and supporting families</li>
+                        <li><strong>Cook/Chefs:</strong> Meal preparation and kitchen management</li>
+                        <li><strong>Elderly Caregivers:</strong> Assisting senior citizens with daily activities</li>
+                        <li><strong>Gardeners and Groundskeepers:</strong> Maintaining outdoor spaces</li>
+                        <li><strong>Drivers and Chauffeurs:</strong> Family transportation needs</li>
+                    </ul>
+                    
+                    <h3>Rights and Regulations</h3>
+                    <p>The Domestic Workers Act provides important protections:</p>
+                    <ul>
+                        <li>Minimum wage requirements</li>
+                        <li>Maximum working hours (45 hours per week)</li>
+                        <li>Paid leave and off days</li>
+                        <li>Written employment contracts</li>
+                        <li>Access to social security (NSSF)</li>
+                        <li>Safe working conditions</li>
+                    </ul>
+                    
+                    <h3>Skills and Qualifications</h3>
+                    <p>Successful domestic workers typically possess:</p>
+                    <ul>
+                        <li>Basic literacy and numeracy skills</li>
+                        <li>Understanding of household management</li>
+                        <li>Childcare or elderly care knowledge</li>
+                        <li>Cooking and nutrition basics</li>
+                        <li>Reliability and trustworthiness</li>
+                        <li>Good communication skills</li>
+                    </ul>
+                    
+                    <h3>Training Opportunities</h3>
+                    <p>Several organizations offer domestic worker training:</p>
+                    <ul>
+                        <li>Government vocational training centers</li>
+                        <li>Private domestic worker training schools</li>
+                        <li>Online courses in household management</li>
+                        <li>First aid and safety training programs</li>
+                    </ul>
+                    
+                    <h3>Career Advancement</h3>
+                    <p>Domestic workers can advance their careers through:</p>
+                    <ul>
+                        <li>Specializing in specific areas (childcare, cooking)</li>
+                        <li>Pursuing additional certifications</li>
+                        <li>Moving into supervisory roles</li>
+                        <li>Starting their own cleaning or caregiving services</li>
+                    </ul>
+                    
+                    <p>The domestic work sector offers stable employment with opportunities for skill development and career growth, making it an important source of livelihood for many Kenyan families.</p>
+                `
+            }
+        };
+
+        // ========== SIMPLIFIED JAVASCRIPT ==========
+        const API_BASE_URL = '/api/jobs';
+
+        // Global variables
+        let currentJobs = [];
+        let currentPage = 1;
+        const jobsPerPage = 5;
+        let currentSort = 'newest';
+
+        // User profile data
+        const userProfile = {
+            id: 'user_12345',
+            name: 'Profile',
+            joinDate: '2024-01-15',
+            jobsPosted: [],
+            totalApplicants: 0
+        };
+
+        // Real-time updates simulation
+        let realTimeInterval;
+
+        async function initializeApp() {
+            setupEventListeners();
+            await loadJobs();
+            loadMyJobs();
+            startRealTimeUpdates();
+        }
+
+        function setupEventListeners() {
+            document.getElementById('job-form').addEventListener('submit', handleJobSubmit);
+            document.getElementById('edit-job-form').addEventListener('submit', handleJobEdit);
+            
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', debounce(handleSearchInput, 300));
+            }
+        }
+
+        // Phone Number Formatting
+        function formatPhoneNumber(input) {
+            let value = input.value.replace(/\D/g, '');
+            
+            if (value.startsWith('0')) {
+                value = value.substring(1);
+            }
+            
+            if (value.length > 0 && !value.startsWith('254')) {
+                value = '254' + value;
+            }
+            
+            if (value.length > 12) {
+                value = value.substring(0, 12);
+            }
+            
+            input.value = value;
+        }
+
+        // Format phone for display and calling
+        function formatPhoneForCall(phone) {
+            if (!phone) return '';
+            let digits = phone.replace(/\D/g, '');
+            
+            if (digits.startsWith('254')) {
+                return '+254' + digits.substring(3);
+            }
+            
+            return '+254' + digits;
+        }
+
+        // WhatsApp Integration
+        function generateWhatsAppLink(job) {
+            const user = JSON.parse(localStorage.getItem('user') || 'null');
+            if (!user) {
+                return 'signin.html';
+            }
+            
+            const formattedPhone = formatPhoneForCall(job.whatsapp || job.phone);
+            const message = `Hi, I am interested in joining ${job.title} position.`;
+            return `https://wa.me/${formattedPhone.replace('+', '')}?text=${encodeURIComponent(message)}`;
+        }
+
+        // Backend API Integration
+        async function loadJobs() {
+            try {
+                showMessage('Loading jobs...', 'info', 'jobs');
+                
+                // In a real app, this would fetch from an API
+                // For demo purposes, we'll use localStorage
+                const savedJobs = JSON.parse(localStorage.getItem('jobs') || '[]');
+                
+                if (savedJobs && Array.isArray(savedJobs)) {
+                    currentJobs = savedJobs;
+                } else {
+                    currentJobs = [];
+                }
+                
+                applyCurrentSort();
+                displayJobs(currentJobs);
+                updatePagination();
+                showMessage('', 'success', 'jobs');
+                
+            } catch (error) {
+                console.error('Error loading jobs:', error);
+                showMessage('Failed to load jobs from server', 'error', 'jobs');
+                loadCachedData();
+            }
+        }
+
+        function loadCachedData() {
+            // Load sample data if no jobs exist
+            if (currentJobs.length === 0) {
+                currentJobs = [
+                    {
+                        _id: 'job_1',
+                        title: 'Farm Worker Needed',
+                        description: 'Looking for experienced farm workers for seasonal harvest. Must be able to work long hours and have basic farming knowledge.',
+                        location: 'Nakuru',
+                        category: 'agriculture',
+                        phone: '254712345678',
+                        businessType: 'Farm',
+                        employerId: 'employer_1',
+                        postedDate: new Date().toISOString(),
+                        applicants: 3
+                    },
+                    {
+                        _id: 'job_2',
+                        title: 'Construction Helper',
+                        description: 'Immediate opening for construction helpers at a new site. No experience required, training provided.',
+                        location: 'Kiambu',
+                        category: 'construction',
+                        phone: '254723456789',
+                        businessType: 'Construction Company',
+                        employerId: 'employer_2',
+                        postedDate: new Date(Date.now() - 86400000).toISOString(),
+                        applicants: 5
+                    },
+                    {
+                        _id: 'job_3',
+                        title: 'Domestic Helper',
+                        description: 'Looking for reliable domestic helper for household chores and childcare. Must be trustworthy and have references.',
+                        location: 'Nairobi',
+                        category: 'domestic',
+                        phone: '254734567890',
+                        businessType: 'Family',
+                        employerId: 'employer_3',
+                        postedDate: new Date(Date.now() - 172800000).toISOString(),
+                        applicants: 2
+                    }
+                ];
+                localStorage.setItem('jobs', JSON.stringify(currentJobs));
+            }
+        }
+
+        async function handleJobSubmit(e) {
+            e.preventDefault();
+            
+            const user = JSON.parse(localStorage.getItem('user') || 'null');
+            if (!user) {
+                showMessage('Please sign in to post a job', 'error', 'post');
+                showToast('Please sign in to post a job', 'warning');
+                return;
+            }
+
+            if (!validateForm()) return;
+
+            const jobData = collectFormData();
+            const submitButton = document.querySelector('#job-form button[type="submit"]');
+            
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Posting...';
+            submitButton.disabled = true;
+
+            try {
+                // In a real app, this would be an API call
+                // For demo, we'll simulate with localStorage
+                const newJob = {
+                    _id: 'job_' + Date.now(),
+                    ...jobData,
+                    postedDate: new Date().toISOString(),
+                    applicants: 0
+                };
+
+                // Add to current jobs and update UI
+                currentJobs.unshift(newJob);
+                localStorage.setItem('jobs', JSON.stringify(currentJobs));
+                displayJobs(currentJobs);
+                
+                // Add to user's jobs
+                userProfile.jobsPosted.unshift(newJob);
+                loadMyJobs();
+                
+                showMessage('Job posted successfully!', 'success', 'post');
+                document.getElementById('job-form').reset();
+                showToast('Job posted successfully!', 'success');
+
+                // Simulate real-time update to other devices
+                simulateRealTimeUpdate(newJob);
+
+                setTimeout(() => {
+                    showSection('profile');
+                }, 1500);
+                
+            } catch (error) {
+                console.error('Post job error:', error);
+                showMessage('Failed to post job. Please try again.', 'error', 'post');
+                showToast('Failed to post job', 'error');
+            } finally {
+                submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Post Job';
+                submitButton.disabled = false;
+            }
+        }
+
+        // Simulate real-time updates (in a real app, this would use WebSockets or similar)
+        function startRealTimeUpdates() {
+            realTimeInterval = setInterval(() => {
+                // Simulate new jobs being added by other users
+                if (Math.random() > 0.7) {
+                    const sampleJobs = [
+                        {
+                            _id: 'job_' + Date.now(),
+                            title: 'Sample Farm Worker',
+                            description: 'Looking for experienced farm workers for seasonal harvest.',
+                            location: 'Nakuru',
+                            category: 'agriculture',
+                            phone: '254712345678',
+                            businessType: 'Farm',
+                            employerId: 'other_user',
+                            postedDate: new Date().toISOString(),
+                            applicants: Math.floor(Math.random() * 5)
+                        },
+                        {
+                            _id: 'job_' + (Date.now() + 1),
+                            title: 'Construction Helper',
+                            description: 'Immediate opening for construction helpers at a new site.',
+                            location: 'Kiambu',
+                            category: 'construction',
+                            phone: '254723456789',
+                            businessType: 'Construction Company',
+                            employerId: 'other_user',
+                            postedDate: new Date().toISOString(),
+                            applicants: Math.floor(Math.random() * 3)
+                        }
+                    ];
+                    
+                    const randomJob = sampleJobs[Math.floor(Math.random() * sampleJobs.length)];
+                    
+                    // Only add if not already in the list
+                    if (!currentJobs.find(job => job._id === randomJob._id)) {
+                        currentJobs.unshift(randomJob);
+                        localStorage.setItem('jobs', JSON.stringify(currentJobs));
+                        displayJobs(currentJobs);
+                        updatePagination();
+                        
+                        // Show notification for new job
+                        if (Math.random() > 0.5) {
+                            showToast(`New job posted: ${randomJob.title}`, 'info');
+                        }
+                    }
+                }
+            }, 10000); // Check every 10 seconds
+        }
+
+        function simulateRealTimeUpdate(job) {
+            // In a real application, this would broadcast to other connected clients
+            console.log('Job posted - would broadcast to other devices:', job.title);
+            
+            // For demo purposes, we'll just log this
+            setTimeout(() => {
+                showToast(`Your job "${job.title}" is now visible to others`, 'success');
+            }, 2000);
+        }
+
+        function validateForm() {
+            const title = document.getElementById('job-title').value.trim();
+            const description = document.getElementById('job-description').value.trim();
+            const location = document.getElementById('job-location').value.trim();
+            const phone = document.getElementById('employer-phone').value.trim();
+
+            if (!title || title.length < 3) {
+                showMessage('Job title must be at least 3 characters', 'error', 'post');
+                return false;
+            }
+
+            if (!description || description.length < 10) {
+                showMessage('Please provide a detailed job description', 'error', 'post');
+                return false;
+            }
+
+            if (!location) {
+                showMessage('Location is required', 'error', 'post');
+                return false;
+            }
+
+            if (!phone) {
+                showMessage('Phone number is required', 'error', 'post');
+                return false;
+            }
+
+            const cleanPhone = phone.replace(/\D/g, '');
+            const phoneRegex = /^(254|0)?[17]\d{8}$/;
+            
+            if (!phoneRegex.test(cleanPhone)) {
+                showMessage('Please enter a valid Kenyan phone number (e.g., 712345678)', 'error', 'post');
+                return false;
+            }
+
+            return true;
+        }
+
+        function collectFormData() {
+            const formatPhone = (phone) => {
+                return phone.replace(/\D/g, '');
+            };
+            
+            const phone = document.getElementById('employer-phone').value.trim();
+            const whatsapp = document.getElementById('employer-whatsapp').value.trim();
+            
+            return {
+                title: document.getElementById('job-title').value.trim(),
+                description: document.getElementById('job-description').value.trim(),
+                location: document.getElementById('job-location').value.trim(),
+                category: document.getElementById('job-category').value,
+                phone: formatPhone(phone),
+                whatsapp: whatsapp ? formatPhone(whatsapp) : '',
+                businessType: document.getElementById('business-type').value.trim() || 'Individual',
+                employerId: userProfile.id,
+                postedDate: new Date().toISOString(),
+                applicants: 0 // Initialize with 0 applicants
+            };
+        }
+
+        // Load user's jobs
+        function loadMyJobs() {
+            const myJobsList = document.getElementById('my-jobs-list');
+            const totalJobsEl = document.getElementById('total-jobs');
+            const totalApplicantsEl = document.getElementById('total-applicants');
+            const activeJobsEl = document.getElementById('active-jobs');
+            
+            if (!myJobsList) return;
+            
+            // Filter jobs posted by the current user
+            const myJobs = currentJobs.filter(job => job.employerId === userProfile.id);
+            
+            // Update stats
+            totalJobsEl.textContent = myJobs.length;
+            
+            const totalApplicants = myJobs.reduce((sum, job) => sum + (job.applicants || 0), 0);
+            totalApplicantsEl.textContent = totalApplicants;
+            
+            const activeJobs = myJobs.filter(job => !job.isDeleted).length;
+            activeJobsEl.textContent = activeJobs;
+            
+            // Display jobs
+            if (myJobs.length === 0) {
+                myJobsList.innerHTML = '<div class="message info">You haven\'t posted any jobs yet. <a href="#" onclick="showSection(\'post\')">Post your first job</a></div>';
+                return;
+            }
+            
+            myJobsList.innerHTML = myJobs.map(job => `
+                <div class="my-job-card" data-job-id="${job._id}">
+                    <div class="my-job-header">
+                        <div>
+                            <h3 class="my-job-title">${job.title} <span class="category-badge">${job.category}</span></h3>
+                            <div class="my-job-meta">
+                                <div class="my-job-meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>${job.location}</span>
+                                </div>
+                                <div class="my-job-meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>${new Date(job.postedDate).toLocaleDateString()}</span>
+                                </div>
+                                <div class="applicant-count">
+                                    <i class="fas fa-users"></i>
+                                    <span>${job.applicants || 0} applicants</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-job-actions">
+                            <button class="btn-edit" onclick="openEditModal('${job._id}')">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn-delete" onclick="deleteJob('${job._id}')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                    <p>${job.description}</p>
+                </div>
+            `).join('');
+        }
+
+        // Edit job functionality
+        function openEditModal(jobId) {
+            const job = currentJobs.find(j => j._id === jobId);
+            if (!job) return;
+            
+            document.getElementById('edit-job-id').value = job._id;
+            document.getElementById('edit-job-title').value = job.title;
+            document.getElementById('edit-job-description').value = job.description;
+            document.getElementById('edit-job-location').value = job.location;
+            document.getElementById('edit-job-category').value = job.category;
+            
+            document.getElementById('editJobModal').style.display = 'flex';
+        }
+
+        function closeEditModal() {
+            document.getElementById('editJobModal').style.display = 'none';
+        }
+
+        async function handleJobEdit(e) {
+            e.preventDefault();
+            
+            const jobId = document.getElementById('edit-job-id').value;
+            const jobIndex = currentJobs.findIndex(j => j._id === jobId);
+            
+            if (jobIndex === -1) {
+                showToast('Job not found', 'error');
+                return;
+            }
+            
+            const updatedJob = {
+                ...currentJobs[jobIndex],
+                title: document.getElementById('edit-job-title').value.trim(),
+                description: document.getElementById('edit-job-description').value.trim(),
+                location: document.getElementById('edit-job-location').value.trim(),
+                category: document.getElementById('edit-job-category').value
+            };
+            
+            try {
+                // In a real app, this would be an API call
+                currentJobs[jobIndex] = updatedJob;
+                localStorage.setItem('jobs', JSON.stringify(currentJobs));
+                displayJobs(currentJobs);
+                loadMyJobs();
+                
+                closeEditModal();
+                showToast('Job updated successfully!', 'success');
+                
+            } catch (error) {
+                console.error('Update job error:', error);
+                showToast('Failed to update job', 'error');
+            }
+        }
+
+        // Delete job functionality
+        async function deleteJob(jobId) {
+            if (!confirm('Are you sure you want to delete this job?')) return;
+            
+            const jobIndex = currentJobs.findIndex(j => j._id === jobId);
+            
+            if (jobIndex === -1) {
+                showToast('Job not found', 'error');
+                return;
+            }
+            
+            try {
+                // In a real app, this would be an API call
+                currentJobs.splice(jobIndex, 1);
+                localStorage.setItem('jobs', JSON.stringify(currentJobs));
+                displayJobs(currentJobs);
+                loadMyJobs();
+                
+                showToast('Job deleted successfully!', 'success');
+                
+            } catch (error) {
+                console.error('Delete job error:', error);
+                showToast('Failed to delete job', 'error');
+            }
+        }
+
+        // Utility Functions
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Toast Notifications
+        function showToast(message, type) {
+            const toastContainer = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <div>${message}</div>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        function showMessage(message, type, section) {
+            const container = document.getElementById(`${section}-message`);
+            if (container) {
+                container.innerHTML = `<div class="message ${type}">${message}</div>`;
+                
+                if (type === 'success') {
+                    setTimeout(() => {
+                        container.innerHTML = '';
+                    }, 5000);
+                }
+            }
+        }
+
+        // Section Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+            
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            const activeItem = Array.from(document.querySelectorAll('.nav-item'))
+                .find(item => item.textContent.includes(sectionId.charAt(0).toUpperCase() + sectionId.slice(1)));
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+            
+            // If showing profile, reload my jobs
+            if (sectionId === 'profile') {
+                loadMyJobs();
+            }
+        }
+
+        // Blog functionality
+        function openBlog(blogId) {
+            const blog = blogContent[blogId];
+            if (!blog) return;
+            
+            document.getElementById('blog-modal-title').textContent = blog.title;
+            document.getElementById('blog-modal-image').innerHTML = `<i class="${blog.icon}"></i>`;
+            document.getElementById('blog-modal-body').innerHTML = blog.content;
+            document.getElementById('blogModal').style.display = 'flex';
+        }
+
+        function closeBlogModal() {
+            document.getElementById('blogModal').style.display = 'none';
+        }
+
+        // Export functions for global access
+        window.showSection = showSection;
+        window.clearForm = clearForm;
+        window.sortJobs = sortJobs;
+        window.openBlog = openBlog;
+        window.closeBlogModal = closeBlogModal;
+        window.openEditModal = openEditModal;
+        window.closeEditModal = closeEditModal;
+        window.deleteJob = deleteJob;
+        window.generateWhatsAppLink = generateWhatsAppLink;
+        window.formatPhoneNumber = formatPhoneNumber;
+
+        // Initialize other functions
+        function clearForm() {
+            document.getElementById('job-form').reset();
+            showToast('Form cleared', 'info');
+        }
+
+        function sortJobs(criteria) {
+            currentSort = criteria;
+            applyCurrentSort();
+            displayJobs(currentJobs);
+            showToast(`Sorted by ${criteria}`, 'info');
+        }
+
+        function applyCurrentSort() {
+            switch (currentSort) {
+                case 'newest':
+                    currentJobs.sort((a, b) => new Date(b.postedDate) - new Date(a.postedDate));
+                    break;
+                case 'location':
+                    currentJobs.sort((a, b) => a.location.localeCompare(b.location));
+                    break;
+                case 'category':
+                    currentJobs.sort((a, b) => a.category.localeCompare(b.category));
+                    break;
+            }
+        }
+
+        function handleSearchInput(e) {
+            const query = e.target.value.toLowerCase();
+            if (query.length < 2) return;
+            
+            const filteredJobs = currentJobs.filter(job => 
+                job.title.toLowerCase().includes(query) ||
+                job.description.toLowerCase().includes(query) ||
+                job.location.toLowerCase().includes(query)
+            );
+            displaySearchResults(filteredJobs);
+        }
+
+        function displaySearchResults(jobs) {
+            const results = document.getElementById('search-results');
+            const message = document.getElementById('search-message');
+            
+            results.innerHTML = '';
+            
+            if (!jobs || jobs.length === 0) {
+                message.innerHTML = '<div class="message info">No jobs found matching your search.</div>';
+                return;
+            }
+            
+            message.innerHTML = `<div class="message success">Found ${jobs.length} jobs</div>`;
+            
+            jobs.forEach(job => {
+                const div = document.createElement('div');
+                div.className = 'job-listing';
+                div.innerHTML = generateJobHTML(job);
+                results.appendChild(div);
+            });
+        }
+
+        function generateJobHTML(job) {
+            const postedDate = new Date(job.postedDate).toLocaleDateString();
+            const user = JSON.parse(localStorage.getItem('user') || 'null');
+            const formattedPhone = formatPhoneForCall(job.phone);
+            
+            return `
+                <div class="job-listing" data-job-id="${job._id}">
+                    <div class="job-details">
+                        <div class="job-content">
+                            <h3>${job.title} <span class="category-badge">${job.category}</span></h3>
+                            <p>${job.description}</p>
+                            <div class="job-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>${job.location}</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>${postedDate}</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-building"></i>
+                                    <span>${job.businessType || 'Individual'}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="communication">
+                            ${user ? `
+                                <a href="tel:${formattedPhone}" class="btn-call">
+                                    <i class="fas fa-phone"></i> Call
+                                </a>
+                                ${job.whatsapp || job.phone ? `
+                                    <a href="${generateWhatsAppLink(job)}" class="btn-whatsapp" target="_blank">
+                                        <i class="fab fa-whatsapp"></i> WhatsApp
+                                    </a>
+                                ` : ''}
+                            ` : `
+                                <a href="signin.html" class="btn-call">
+                                    <i class="fas fa-sign-in-alt"></i> Sign In to Contact
+                                </a>
+                            `}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function displayJobs(jobs) {
+            const container = document.getElementById('job-listings');
+            if (!container) return;
+                
+            if (!jobs || jobs.length === 0) {
+                container.innerHTML = '<div class="message info">No jobs found. Be the first to post a job!</div>';
+                return;
+            }
+            
+            const startIndex = (currentPage - 1) * jobsPerPage;
+            const paginatedJobs = jobs.slice(startIndex, startIndex + jobsPerPage);
+            
+            container.innerHTML = paginatedJobs.map(job => generateJobHTML(job)).join('');
+        }
+
+        function updatePagination() {
+            const totalPages = Math.ceil(currentJobs.length / jobsPerPage);
+            const container = document.getElementById('pagination');
+            if (!container || totalPages <= 1) {
+                container.innerHTML = '';
+                return;
+            }
+            
+            let paginationHTML = '';
+            
+            if (currentPage > 1) {
+                paginationHTML += `<button class="page-btn" onclick="currentPage = ${currentPage - 1}; displayJobs(currentJobs);">
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>`;
+            }
+            
+            for (let i = 1; i <= totalPages; i++) {
+                paginationHTML += `<button class="page-btn ${i === currentPage ? 'active' : ''}" 
+                    onclick="currentPage = ${i}; displayJobs(currentJobs);">${i}</button>`;
+            }
+            
+            if (currentPage < totalPages) {
+                paginationHTML += `<button class="page-btn" onclick="currentPage = ${currentPage + 1}; displayJobs(currentJobs);">
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>`;
+            }
+            
+            container.innerHTML = paginationHTML;
+        }
+
+        // Initialize the application when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAuthUI();
+            initializeApp();
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
